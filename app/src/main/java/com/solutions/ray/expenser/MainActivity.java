@@ -1,17 +1,35 @@
 package com.solutions.ray.expenser;
 
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import Controller.Tracker.TransactionHandler;
+import DA.DBHandler;
 
 
 public class MainActivity extends ActionBarActivity {
-
+    TransactionHandler transHandler;
+    TextView testTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        setContentView(R.layout.main_activity);
+        TextView txt1 = (TextView)findViewById(R.id.txt1);
+        TextView txt2 = (TextView)findViewById(R.id.txt2);
+        testTxt = (TextView)findViewById(R.id.testTxt);
+        TextView dailyTotExpenseTxt = (TextView)findViewById(R.id.dailyTotExpenseTxt);
+        TextView dailyTotIncomeTxt = (TextView)findViewById(R.id.dailyTotIncomeTxt);
+
+        transHandler = new TransactionHandler();
+        dailyTotExpenseTxt.setText(""+transHandler.getDailyExpTot(this));
+        dailyTotIncomeTxt.setText(""+transHandler.getDailyIncTot(this));
     }
 
 
@@ -35,5 +53,20 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addExpense(View view){
+        Intent intent = new Intent(this, AddExpenseActivity.class);
+        startActivity(intent);
+    }
+
+    public void addIncome(View view){
+        Intent intent = new Intent(this, AddIncomeActivity.class);
+        startActivity(intent);
+    }
+
+    public void runTest(View view){
+        Intent intent = new Intent(this, Test.class);
+        startActivity(intent);
     }
 }
