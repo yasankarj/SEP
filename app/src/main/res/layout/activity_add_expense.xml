@@ -108,4 +108,35 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:entries="@array/ExpensesTypes"
+        android:prompt="@string/typeTxt"
+        android:layout_alignTop="@+id/catLbl"
+        android:layout_alignLeft="@+id/descTxt"
+        android:layout_alignStart="@+id/descTxt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/curDateTxt"
+        android:layout_alignTop="@+id/dateLbl"
+        android:layout_alignLeft="@+id/amountTxt"
+        android:layout_alignStart="@+id/amountTxt" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C"
+        android:id="@+id/dateBtn"
+        android:width="30px"
+        android:onClick="addPhoto"
+        android:layout_above="@+id/amountTxt"
+        android:layout_alignRight="@+id/amountTxt"
+        android:layout_alignEnd="@+id/amountTxt" />
+
 </RelativeLayout>

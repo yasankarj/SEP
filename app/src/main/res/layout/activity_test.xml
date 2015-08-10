@@ -31,9 +31,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Incomes Added"
         android:id="@+id/ind"
+        android:layout_marginTop="66dp"
         android:layout_below="@+id/testTxt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="118dp" />
+        android:layout_alignLeft="@+id/titleTxt"
+        android:layout_alignStart="@+id/titleTxt" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,8 +42,29 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="test"
         android:id="@+id/incTxt"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/ind"
+        android:layout_toLeftOf="@+id/ind"
+        android:layout_toStartOf="@+id/ind"
+        android:layout_marginTop="26dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:id="@+id/uploadPhtBtn"
+        android:layout_alignTop="@+id/ind"
         android:layout_alignLeft="@+id/testTxt"
         android:layout_alignStart="@+id/testTxt" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

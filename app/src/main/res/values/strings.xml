@@ -10,6 +10,7 @@
     <string name="title_activity_add_expense">Add New Expense</string>
     <string name="title_activity_add_income">Add New Income</string>
     <string name="title_activity_test">test</string>
+    <string name="typeTxt">Category</string>
 
     <string-array name = "ExpensesTypes">
         <item>Transport</item>

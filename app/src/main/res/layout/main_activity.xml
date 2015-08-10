@@ -50,12 +50,12 @@
         android:layout_height="wrap_content"
         android:text="+ Expense"
         android:id="@+id/addExpBtn"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/txt1"
-        android:layout_alignEnd="@+id/txt1"
         android:nestedScrollingEnabled="true"
         android:longClickable="false"
-        android:onClick="addExpense" />
+        android:onClick="addExpense"
+        android:layout_above="@+id/tstBtn"
+        android:layout_alignLeft="@+id/txt1"
+        android:layout_alignStart="@+id/txt1" />
 
     <Button
         android:layout_width="wrap_content"
@@ -72,9 +72,8 @@
         android:layout_height="wrap_content"
         android:text="Test"
         android:id="@+id/tstBtn"
-        android:layout_marginTop="31dp"
         android:onClick="runTest"
-        android:layout_below="@+id/addExpBtn"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

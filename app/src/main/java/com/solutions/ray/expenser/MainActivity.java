@@ -1,7 +1,7 @@
 package com.solutions.ray.expenser;
 
 import android.content.Intent;
-import android.graphics.Typeface;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import Controller.Tracker.TransactionHandler;
-import DA.DBHandler;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -19,8 +18,9 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.main_activity);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+
         TextView txt1 = (TextView)findViewById(R.id.txt1);
         TextView txt2 = (TextView)findViewById(R.id.txt2);
         testTxt = (TextView)findViewById(R.id.testTxt);
