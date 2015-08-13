@@ -1,3 +1,8 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -35,10 +40,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Payee :"
         android:id="@+id/payeeLbl"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="36dp"
         android:layout_below="@+id/amountLbl"
-        android:layout_toLeftOf="@+id/amountLbl"
-        android:layout_toStartOf="@+id/amountLbl" />
+        android:layout_alignRight="@+id/amountLbl"
+        android:layout_alignEnd="@+id/amountLbl" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,10 +51,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Category :"
         android:id="@+id/catLbl"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/payeeLbl"
-        android:layout_alignRight="@+id/amountLbl"
-        android:layout_alignEnd="@+id/amountLbl" />
+        android:layout_below="@+id/textView2"
+        android:layout_toLeftOf="@+id/categoryTxt"
+        android:layout_toStartOf="@+id/categoryTxt"
+        android:layout_marginTop="27dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,7 +65,7 @@
         android:layout_below="@+id/textView"
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView"
-        android:layout_marginTop="39dp" />
+        android:layout_marginTop="26dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -70,8 +75,8 @@
         android:id="@+id/addExpBtn"
         android:onClick="addExpense"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp" />
+        android:layout_toLeftOf="@+id/payeeTypeTxt"
+        android:layout_toStartOf="@+id/payeeTypeTxt" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -88,10 +93,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/instTxt"
-        android:layout_above="@+id/catLbl"
-        android:layout_toRightOf="@+id/galleryBtn"
-        android:layout_toLeftOf="@+id/addExpBtn"
-        android:layout_toStartOf="@+id/addExpBtn" />
+        android:layout_alignBottom="@+id/payeeLbl"
+        android:layout_alignRight="@+id/amountTxt"
+        android:layout_alignEnd="@+id/amountTxt"
+        android:layout_toRightOf="@+id/curDateTxt"
+        android:layout_toEndOf="@+id/curDateTxt" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -119,7 +125,7 @@
         android:id="@+id/galleryBtn"
         android:width="30px"
         android:onClick="addPhoto"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="89dp"
         android:layout_below="@+id/descLbl"
         android:layout_alignLeft="@+id/descLbl"
         android:layout_alignStart="@+id/descLbl" />
@@ -133,7 +139,7 @@
         android:layout_below="@+id/catLbl"
         android:layout_alignRight="@+id/catLbl"
         android:layout_alignEnd="@+id/catLbl"
-        android:layout_marginTop="29dp" />
+        android:layout_marginTop="28dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -171,11 +177,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Pay Type :"
         android:id="@+id/textView2"
-        android:layout_above="@+id/catLbl"
-        android:layout_toRightOf="@+id/captureBtn"
-        android:layout_toEndOf="@+id/captureBtn"
-        android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp" />
+        android:layout_below="@+id/payeeLbl"
+        android:layout_alignRight="@+id/catLbl"
+        android:layout_alignEnd="@+id/catLbl"
+        android:layout_marginTop="24dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -186,4 +191,16 @@
         android:layout_alignRight="@+id/amountTxt"
         android:layout_alignEnd="@+id/amountTxt" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Due Date :"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/descLbl"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_marginTop="26dp" />
+
 </RelativeLayout>
+</ScrollView>
