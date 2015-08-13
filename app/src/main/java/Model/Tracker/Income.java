@@ -6,7 +6,7 @@ package Model.Tracker;
 public class Income extends Transaction{
     private String institute;
     public Income(double amount, String type, String institute, String desc){
-        super(amount, type,desc);
+        super(amount, type,"",desc);
         this.institute = institute;
     }
 

@@ -23,8 +23,9 @@ public class TransactionHandler {
         return transDA.sumIncome(context);
     }
 
-    public void addNewExpense(Context contxt, Double amount, String desc, String cat){
-        Expense exp = new Expense(amount,cat,true,desc);    //Expense object is created with the passed data
+    public void addNewExpense(Context contxt, Double amount, String desc, String type, String subType, String payee, String payType){
+        //(double amount, String type,String subType,String desc, String payee, String payType)
+        Expense exp = new Expense(amount,type,subType,desc,payee,payType);    //Expense object is created with the passed data
         TranasctionDA transDA = new TranasctionDA();
         transDA.addExpense(exp,contxt);                                //Model object is passed to the data access layer
     }

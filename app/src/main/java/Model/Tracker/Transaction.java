@@ -11,14 +11,16 @@ public class Transaction {
     private int transID;
     private double amount;
     private String type;
+    private String subType;
     private String imageLoc;
     private Date timeStamp;
 
     private String desc;
 
-    Transaction(double amount, String type, String desc){
+    Transaction(double amount, String type,String subType, String desc){
         this.amount = amount;
         this.type = type;
+        this.subType = subType;
         this.desc = desc;
     }
 

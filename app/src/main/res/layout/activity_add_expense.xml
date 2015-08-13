@@ -6,22 +6,17 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.solutions.ray.expenser.AddExpenseActivity">
 
-    <TextView android:text="@string/title_activity_add_expense" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/titleLbl" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Date :"
         android:id="@+id/dateLbl"
-        android:layout_marginTop="34dp"
-        android:layout_below="@+id/titleLbl"
-        android:layout_alignRight="@+id/titleLbl"
-        android:layout_alignEnd="@+id/titleLbl"
-        android:layout_marginRight="22dp"
-        android:layout_marginEnd="22dp" />
+        android:layout_marginLeft="66dp"
+        android:layout_marginStart="66dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,10 +35,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Payee :"
         android:id="@+id/payeeLbl"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/amountLbl"
-        android:layout_alignRight="@+id/amountLbl"
-        android:layout_alignEnd="@+id/amountLbl"
-        android:layout_marginTop="30dp" />
+        android:layout_toLeftOf="@+id/amountLbl"
+        android:layout_toStartOf="@+id/amountLbl" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,10 +46,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Category :"
         android:id="@+id/catLbl"
+        android:layout_marginTop="35dp"
         android:layout_below="@+id/payeeLbl"
-        android:layout_alignRight="@+id/payeeLbl"
-        android:layout_alignEnd="@+id/payeeLbl"
-        android:layout_marginTop="30dp" />
+        android:layout_alignRight="@+id/amountLbl"
+        android:layout_alignEnd="@+id/amountLbl" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,10 +57,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Description :"
         android:id="@+id/descLbl"
-        android:layout_below="@+id/catLbl"
-        android:layout_alignRight="@+id/catLbl"
-        android:layout_alignEnd="@+id/catLbl"
-        android:layout_marginTop="30dp" />
+        android:layout_below="@+id/textView"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_marginTop="39dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -73,11 +68,10 @@
         android:layout_height="wrap_content"
         android:text="Add Expense"
         android:id="@+id/addExpBtn"
-        android:layout_marginTop="56dp"
-        android:layout_below="@+id/descLbl"
-        android:layout_toRightOf="@+id/descLbl"
-        android:layout_toEndOf="@+id/descLbl"
-        android:onClick="addExpense" />
+        android:onClick="addExpense"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -95,28 +89,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/instTxt"
         android:layout_above="@+id/catLbl"
-        android:layout_toRightOf="@+id/dateLbl"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_toRightOf="@+id/galleryBtn"
+        android:layout_toLeftOf="@+id/addExpBtn"
+        android:layout_toStartOf="@+id/addExpBtn" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/descTxt"
-        android:layout_above="@+id/addExpBtn"
+        android:layout_alignBottom="@+id/descLbl"
         android:layout_toRightOf="@+id/dateLbl"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:entries="@array/ExpensesTypes"
-        android:prompt="@string/typeTxt"
-        android:layout_alignTop="@+id/catLbl"
-        android:layout_alignLeft="@+id/descTxt"
-        android:layout_alignStart="@+id/descTxt" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -131,11 +115,74 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="C"
-        android:id="@+id/dateBtn"
+        android:text="G"
+        android:id="@+id/galleryBtn"
         android:width="30px"
         android:onClick="addPhoto"
-        android:layout_above="@+id/amountTxt"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/descLbl"
+        android:layout_alignLeft="@+id/descLbl"
+        android:layout_alignStart="@+id/descLbl" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Sub Category :"
+        android:id="@+id/textView"
+        android:layout_below="@+id/catLbl"
+        android:layout_alignRight="@+id/catLbl"
+        android:layout_alignEnd="@+id/catLbl"
+        android:layout_marginTop="29dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/categoryTxt"
+        android:layout_alignBottom="@+id/catLbl"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/curDateTxt"
+        android:layout_toEndOf="@+id/curDateTxt" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/subCatTxt"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_toRightOf="@+id/dateLbl"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C"
+        android:id="@+id/captureBtn"
+        android:layout_alignTop="@+id/galleryBtn"
+        android:layout_toRightOf="@+id/descLbl"
+        android:layout_toEndOf="@+id/descLbl"
+        android:onClick="capturePhoto" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Pay Type :"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/catLbl"
+        android:layout_toRightOf="@+id/captureBtn"
+        android:layout_toEndOf="@+id/captureBtn"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/payeeTypeTxt"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
         android:layout_alignRight="@+id/amountTxt"
         android:layout_alignEnd="@+id/amountTxt" />
 
