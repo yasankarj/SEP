@@ -9,7 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.solutions.ray.expenser.AddExpenseActivity">
+    tools:context="com.solutions.ray.expenser.AddExpenseActivity"
+    android:id="@+id/AddExpense">
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,7 +30,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Amount :"
         android:id="@+id/amountLbl"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="29dp"
         android:layout_below="@+id/dateLbl"
         android:layout_alignRight="@+id/dateLbl"
         android:layout_alignEnd="@+id/dateLbl" />
@@ -43,7 +44,7 @@
         android:layout_marginTop="36dp"
         android:layout_below="@+id/amountLbl"
         android:layout_alignRight="@+id/amountLbl"
-        android:layout_alignEnd="@+id/amountLbl" />
+        android:layout_alignEnd="@+id/dateLbl" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,10 +52,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Category :"
         android:id="@+id/catLbl"
+        android:layout_marginTop="24dp"
         android:layout_below="@+id/textView2"
-        android:layout_toLeftOf="@+id/categoryTxt"
-        android:layout_toStartOf="@+id/categoryTxt"
-        android:layout_marginTop="27dp" />
+        android:layout_alignRight="@+id/dateLbl"
+        android:layout_alignEnd="@+id/dateLbl" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,8 +64,8 @@
         android:text="Description :"
         android:id="@+id/descLbl"
         android:layout_below="@+id/textView"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView"
+        android:layout_alignRight="@+id/dateLbl"
+        android:layout_alignEnd="@+id/dateLbl"
         android:layout_marginTop="26dp" />
 
     <Button
@@ -75,8 +76,9 @@
         android:id="@+id/addExpBtn"
         android:onClick="addExpense"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/payeeTypeTxt"
-        android:layout_toStartOf="@+id/payeeTypeTxt" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/btn"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -85,9 +87,11 @@
         android:ems="10"
         android:id="@+id/amountTxt"
         android:layout_above="@+id/payeeLbl"
-        android:layout_toRightOf="@+id/dateLbl"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_toLeftOf="@+id/curDateTxt"
+        android:layout_alignLeft="@+id/curDateTxt"
+        android:layout_alignStart="@+id/curDateTxt" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -96,26 +100,30 @@
         android:layout_alignBottom="@+id/payeeLbl"
         android:layout_alignRight="@+id/amountTxt"
         android:layout_alignEnd="@+id/amountTxt"
-        android:layout_toRightOf="@+id/curDateTxt"
-        android:layout_toEndOf="@+id/curDateTxt" />
+        android:layout_alignLeft="@+id/amountTxt"
+        android:layout_alignStart="@+id/amountTxt" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/descTxt"
         android:layout_alignBottom="@+id/descLbl"
-        android:layout_toRightOf="@+id/dateLbl"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/subCatTxt"
+        android:layout_alignStart="@+id/subCatTxt" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/curDateTxt"
-        android:layout_alignTop="@+id/dateLbl"
-        android:layout_alignLeft="@+id/amountTxt"
-        android:layout_alignStart="@+id/amountTxt" />
+        android:text="test"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/captureBtn"
+        android:layout_toEndOf="@+id/captureBtn"
+        android:onClick="setDate"
+        android:clickable="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -125,7 +133,7 @@
         android:id="@+id/galleryBtn"
         android:width="30px"
         android:onClick="addPhoto"
-        android:layout_marginTop="89dp"
+        android:layout_marginTop="38dp"
         android:layout_below="@+id/descLbl"
         android:layout_alignLeft="@+id/descLbl"
         android:layout_alignStart="@+id/descLbl" />
@@ -137,28 +145,29 @@
         android:text="Sub Category :"
         android:id="@+id/textView"
         android:layout_below="@+id/catLbl"
-        android:layout_alignRight="@+id/catLbl"
-        android:layout_alignEnd="@+id/catLbl"
+        android:layout_alignRight="@+id/dateLbl"
+        android:layout_alignEnd="@+id/dateLbl"
         android:layout_marginTop="28dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/categoryTxt"
-        android:layout_alignBottom="@+id/catLbl"
+        android:layout_above="@+id/textView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/curDateTxt"
-        android:layout_toEndOf="@+id/curDateTxt" />
+        android:layout_alignLeft="@+id/payeeTypeTxt"
+        android:layout_alignStart="@+id/payeeTypeTxt" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/subCatTxt"
         android:layout_alignBottom="@+id/textView"
-        android:layout_toRightOf="@+id/dateLbl"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/categoryTxt"
+        android:layout_alignStart="@+id/categoryTxt" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -177,30 +186,31 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Pay Type :"
         android:id="@+id/textView2"
+        android:layout_marginTop="24dp"
         android:layout_below="@+id/payeeLbl"
-        android:layout_alignRight="@+id/catLbl"
-        android:layout_alignEnd="@+id/catLbl"
-        android:layout_marginTop="24dp" />
+        android:layout_alignRight="@+id/dateLbl"
+        android:layout_alignEnd="@+id/dateLbl" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/payeeTypeTxt"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_alignRight="@+id/amountTxt"
-        android:layout_alignEnd="@+id/amountTxt" />
+        android:layout_above="@+id/categoryTxt"
+        android:layout_alignLeft="@+id/instTxt"
+        android:layout_alignStart="@+id/instTxt"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Due Date :"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/descLbl"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_marginTop="26dp" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/testTxt"
+        android:layout_below="@+id/captureBtn"
+        android:layout_alignRight="@+id/dateLbl"
+        android:layout_alignEnd="@+id/dateLbl"
+        android:layout_marginTop="56dp" />
+
 
 </RelativeLayout>
 </ScrollView>

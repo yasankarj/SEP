@@ -11,8 +11,8 @@ public class Expense extends Transaction {
     private String payType;
     private Date dueDate;
 
-    public Expense(double amount, String type,String subType,String desc, String payee, String payType){
-        super(amount,type,subType,desc);
+    public Expense(double amount, String type,String subType,String desc, String payee, String payType, String dateStr){
+        super(amount,type,subType,desc,dateStr);
         this.payee = payee;
         this.payType = payType;
     }

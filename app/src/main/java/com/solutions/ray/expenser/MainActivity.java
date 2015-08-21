@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import Controller.Tracker.TransactionHandler;
 
 
@@ -21,15 +24,29 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.main_activity);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
-        TextView txt1 = (TextView)findViewById(R.id.txt1);
-        TextView txt2 = (TextView)findViewById(R.id.txt2);
-        testTxt = (TextView)findViewById(R.id.testTxt);
-        TextView dailyTotExpenseTxt = (TextView)findViewById(R.id.dailyTotExpenseTxt);
-        TextView dailyTotIncomeTxt = (TextView)findViewById(R.id.dailyTotIncomeTxt);
+        TextView dailyTotExpenseTxt = (TextView)findViewById(R.id.dailyExpTxt);
+        TextView dailyTotIncomeTxt = (TextView)findViewById(R.id.dailyIncTxt);
 
+        TextView weeklyTotExpenseTxt = (TextView)findViewById(R.id.weekExpTxt);
+        TextView monthlyTotExpenseTxt = (TextView) findViewById(R.id.monthExpTxt);
+        TextView annualExpTxt = (TextView)findViewById(R.id.annualExpTxt);
         transHandler = new TransactionHandler();
-        dailyTotExpenseTxt.setText(""+transHandler.getDailyExpTot(this));
-        dailyTotIncomeTxt.setText(""+transHandler.getDailyIncTot(this));
+
+        SimpleDateFormat df;
+        SimpleDateFormat weekF = new SimpleDateFormat("WW");
+        Date dt = new Date();
+        df= new SimpleDateFormat("yyyy-MM-dd"); //Date is stored as a text in format yyyy-MM-dd hh:mm WW
+        dailyTotExpenseTxt.setText("Today Expense : "+transHandler.getDailyExpTot(this,df.format(dt)));
+        dailyTotIncomeTxt.setText("Today Income : "+transHandler.getDailyIncTot(this));
+
+        df= new SimpleDateFormat("yyyy-MM");
+        monthlyTotExpenseTxt.setText("Monthly Expense :	"+transHandler.getDailyExpTot(this,df.format(dt)));
+
+        weeklyTotExpenseTxt.setText("Weekly Expense : "+transHandler.getDailyExpTot(this,df.format(dt)+"%"+weekF.format(dt)));
+
+        df= new SimpleDateFormat("yyyy");
+        annualExpTxt.setText("Year To Date : "+transHandler.getDailyExpTot(this,df.format(dt)));
+
     }
 
 
@@ -67,6 +84,17 @@ public class MainActivity extends ActionBarActivity {
 
     public void runTest(View view){
         Intent intent = new Intent(this, Test.class);
+        startActivity(intent);
+    }
+
+    public void showDailyExp(View view){
+        Intent intent = new Intent(this, DailyExpenses.class);
+        intent.putExtra("range","month");
+        startActivity(intent);
+    }
+
+    public void showSideBar(View view){
+        Intent intent = new Intent(this,SideBar.class);
         startActivity(intent);
     }
 }

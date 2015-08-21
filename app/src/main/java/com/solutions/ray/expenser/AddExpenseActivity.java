@@ -1,7 +1,9 @@
 package com.solutions.ray.expenser;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -9,10 +11,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,12 +40,16 @@ public class AddExpenseActivity extends ActionBarActivity {
     EditText catTxt;
     EditText subCatTxt;
     EditText descTxt;
+    TextView testTxt;
     EditText payeeTypeTxt;
     Button addExpBtn;
     Button captureBtn;
     TextView curDateTxt;
     Button galleryBtn;
+    DateFormat df;
+    Date dt;
     Calendar myCalendar;
+    DatePickerDialog dpd;
     private static final int SELECT_PHOTO = 100;
 
     final String dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/expenser/";
@@ -62,10 +71,10 @@ public class AddExpenseActivity extends ActionBarActivity {
         captureBtn = (Button)findViewById(R.id.captureBtn);
         catTxt = (EditText)findViewById(R.id.categoryTxt);
         subCatTxt = (EditText)findViewById(R.id.subCatTxt);
-
+        testTxt = (TextView)findViewById(R.id.testTxt);
         curDateTxt = (TextView)findViewById(R.id.curDateTxt);
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        Date dt = new Date();
+        df = new SimpleDateFormat("yyyy-MM-dd hh:mm WW");
+        dt = new Date();
         galleryBtn = (Button)findViewById(R.id.galleryBtn);
 
         curDateTxt.setText(df.format(dt));
@@ -73,8 +82,19 @@ public class AddExpenseActivity extends ActionBarActivity {
 
 
 
-    }
 
+    }
+    public void setDate(View view){
+        dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                curDateTxt.setText(df.format(newDate.getTime()));
+            }
+
+        },myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -101,8 +121,18 @@ public class AddExpenseActivity extends ActionBarActivity {
     public void addExpense(View view){
         /*Button Action performance*/
         /*Controller takes the action to his hand*/
-       transHandler.addNewExpense(this, Double.parseDouble(amountTxt.getText().toString()), descTxt.getText().toString(),catTxt.getText().toString(),subCatTxt.getText().toString(),payeeTxt.getText().toString(),payeeTypeTxt.getText().toString());
-        //(Context contxt, Double amount, String desc, String type, String subType, String payee, String payType)
+        long val = 0;
+       try{
+           val = transHandler.addNewExpense(this, Double.parseDouble(amountTxt.getText().toString()), descTxt.getText().toString(), catTxt.getText().toString(), subCatTxt.getText().toString(), payeeTxt.getText().toString(), payeeTypeTxt.getText().toString(),df.format(dt));
+           Toast.makeText(getApplicationContext(), "Succesfully Added !",Toast.LENGTH_SHORT).show();
+       }
+
+       catch (Exception ex){
+           Toast.makeText(getApplicationContext(), "Error Occured !!!",
+                   Toast.LENGTH_SHORT).show();
+       }
+
+        finish();
     }
 
     public void addPhoto(View view){
@@ -115,6 +145,8 @@ public class AddExpenseActivity extends ActionBarActivity {
         // here,counter will be incremented each time,and the picture taken by camera will be stored as 1.jpg,2.jpg and likewise.
         count++;
         String file = dir+count+".jpg";
+
+        testTxt.setText(file);
         File newfile = new File(file);
         try {
             newfile.createNewFile();
@@ -127,4 +159,6 @@ public class AddExpenseActivity extends ActionBarActivity {
 
         startActivityForResult(cameraIntent, TAKE_PHOTO_CODE);
     }
+
+
 }

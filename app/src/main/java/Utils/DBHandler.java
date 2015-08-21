@@ -16,8 +16,12 @@ public class DBHandler extends SQLiteOpenHelper{
     private static final String EXPN_COLUMN_ID = "expID";
     private static final String EXPN_COLUMN_AMOUNT = "amount";
     private static final String EXPN_COLUMN_CAT = "category";
+    private static final String EXPN_COLUMN_SUB_CAT = "subCategory";
     private static final String EXPN_COLUMN_DESC = "desc";
     private static final String EXPN_DATE_TIME = "date_time";
+    private static final String EXPN_PAYEE = "payee";
+    private static final String EXPN_PAY_TYPE = "paytype";
+    private static final String EXPN_IMAGE = "image";
 
     private static final String TABLE_INCOME = "income";
     private static final String INC_COLUMN_ID = "incID";
@@ -51,6 +55,9 @@ public class DBHandler extends SQLiteOpenHelper{
                 EXPN_COLUMN_AMOUNT + " REAL, " +
                 EXPN_DATE_TIME + " TEXT, " +
                 EXPN_COLUMN_CAT + " TEXT, " +
+                EXPN_COLUMN_SUB_CAT + " TEXT, " +
+                EXPN_PAYEE + " TEXT, " +
+                EXPN_PAY_TYPE + " TEXT, " +
                 EXPN_COLUMN_DESC + " TEXT " +");";
 
         /*create income table*/

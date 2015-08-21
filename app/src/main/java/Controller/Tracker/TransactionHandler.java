@@ -12,9 +12,9 @@ import Model.Tracker.Income;
 public class TransactionHandler {
     /*Controller class which maps model objects with the data base*/
 
-    public double getDailyExpTot(Context context){
+    public double getDailyExpTot(Context context,String value){
         TranasctionDA transDA = new TranasctionDA();
-        return transDA.sumExpenses(context);
+        return transDA.sumExpenses(context,value);
     }
 
     public double getDailyIncTot(Context context){
@@ -23,15 +23,16 @@ public class TransactionHandler {
         return transDA.sumIncome(context);
     }
 
-    public void addNewExpense(Context contxt, Double amount, String desc, String type, String subType, String payee, String payType){
+    public long addNewExpense(Context contxt, Double amount, String desc, String type, String subType, String payee, String payType, String dateStr){
         //(double amount, String type,String subType,String desc, String payee, String payType)
-        Expense exp = new Expense(amount,type,subType,desc,payee,payType);    //Expense object is created with the passed data
+        Expense exp = new Expense(amount,type,subType,desc,payee,payType,dateStr);    //Expense object is created with the passed data
         TranasctionDA transDA = new TranasctionDA();
-        transDA.addExpense(exp,contxt);                                //Model object is passed to the data access layer
+        long val = transDA.addExpense(exp,contxt);                                //Model object is passed to the data access layer
+        return val;
     }
 
     public void addNewIncome(Context contxt, Double amount, String desc, String cat, String inst){
-        Income income = new Income(amount,cat,inst,desc);    //Income object is created with the passed data
+        Income income = new Income(amount,cat,"",inst,desc,"");    //Income object is created with the passed data
         TranasctionDA transDA = new TranasctionDA();
         transDA.addIncome(income,contxt);                                //Model object is passed to the data access layer
     }

@@ -1,4 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+]<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -57,14 +61,29 @@
         android:layout_alignLeft="@+id/testTxt"
         android:layout_alignStart="@+id/testTxt" />
 
-    <ScrollView
+
+
+    <DatePicker
+        android:id="@+id/dpResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:layout_below="@+id/incTxt"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_marginTop="99dp"
+        android:layout_alignRight="@+id/ind"
+        android:layout_alignEnd="@+id/ind" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:timePickerMode="spinner"
+        android:layout_below="@+id/dpResult"
+        android:layout_alignRight="@+id/titleTxt"
+        android:layout_alignEnd="@+id/titleTxt" />
 
 </RelativeLayout>
+</ScrollView>

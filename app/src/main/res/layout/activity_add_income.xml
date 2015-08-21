@@ -63,10 +63,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Description :"
         android:id="@+id/descLbl"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/catLbl"
-        android:layout_alignRight="@+id/catLbl"
-        android:layout_alignEnd="@+id/catLbl"
-        android:layout_marginTop="30dp" />
+        android:layout_alignLeft="@+id/dateLbl"
+        android:layout_alignStart="@+id/dateLbl" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -74,10 +74,11 @@
         android:layout_height="wrap_content"
         android:text="Add Income"
         android:id="@+id/addIncBtn"
-        android:layout_below="@+id/descTxt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
-        android:onClick="addIncome" />
+        android:onClick="addIncome"
+        android:background="#ff6ebfff"
+        android:layout_marginBottom="93dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"

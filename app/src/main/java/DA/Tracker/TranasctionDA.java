@@ -22,8 +22,10 @@ public class TranasctionDA {
     private static final String EXPN_COLUMN_ID = "expID";
     private static final String EXPN_COLUMN_AMOUNT = "amount";
     private static final String EXPN_COLUMN_CAT = "category";
+    private static final String EXPN_COLUMN_SUB_CAT = "subCategory";
     private static final String EXPN_COLUMN_DESC = "desc";
-
+    private static final String EXPN_PAYEE = "payee";
+    private static final String EXPN_PAY_TYPE = "paytype";
     private static final String EXPN_DATE_TIME = "date_time";
 
     private static final String TABLE_INCOME = "income";
@@ -33,20 +35,23 @@ public class TranasctionDA {
     private static final String INC_COLUMN_DESC = "desc";
 
     /*this method will add a new expense*/
-    public void addExpense(Expense expn, Context contxt){
-
+    public long addExpense(Expense expn, Context contxt){
+        //(Context contxt, Double amount, String desc, String type, String subType, String payee, String payType)
         DBHandler dbHandler = DBHandler.getDBHandler(contxt, null, null, 1);    //Database connection estabished using Singleton
         SQLiteDatabase db = dbHandler.getDataBase();                            //Writable database is fetched
         ContentValues contentValues = new ContentValues();                      //
+
         contentValues.put(EXPN_COLUMN_AMOUNT,expn.getAmount());
         contentValues.put(EXPN_COLUMN_DESC,expn.getDesc());
-
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String dateStr = df.format(new Date());
-        System.out.println(dateStr);
-        contentValues.put(EXPN_DATE_TIME,dateStr);
-        db.insert(TABLE_EXPENSE,null,contentValues);
+        contentValues.put(EXPN_COLUMN_CAT,expn.getType());
+        contentValues.put(EXPN_COLUMN_SUB_CAT,expn.getSubType());
+        contentValues.put(EXPN_PAYEE,expn.getPayee());
+        contentValues.put(EXPN_PAY_TYPE,expn.getPayType());
+        contentValues.put(EXPN_DATE_TIME,expn.getTimeStamp());
+        long val = db.insert(TABLE_EXPENSE,null,contentValues);
         db.close();
+
+        return val;
     }
 
     /*this method will give all the expenses which are in the database as an concatenated string*/
@@ -56,7 +61,7 @@ public class TranasctionDA {
         //concatanated expenses
         String dbStr = "";
         SQLiteDatabase db = dbh.getDataBase();
-        String query = "SELECT amount,desc,strftime('%M %D',date_time) as date_time FROM "+ TABLE_EXPENSE+";";
+        String query = "SELECT amount,desc,date_time FROM "+ TABLE_EXPENSE+";";
 
         Cursor cur = db.rawQuery(query,null);
 
@@ -75,11 +80,15 @@ public class TranasctionDA {
     }
 
     /*this metod will give the total of all the transactions*/
-    public double sumExpenses(Context contxt){
+    public double sumExpenses(Context contxt,String value){
         DBHandler dbh = DBHandler.getDBHandler(contxt,null,null,1);
         double sum = 0;
         SQLiteDatabase db = dbh.getDataBase();
-        String query = "SELECT * FROM "+ TABLE_EXPENSE+";";
+
+
+            String query = "SELECT * FROM "+ TABLE_EXPENSE+" WHERE "+EXPN_DATE_TIME+" LIKE '"+value+"%' ;";
+      //  }
+       // String query = "SELECT * FROM "+ TABLE_EXPENSE+";";
 
         Cursor cur = db.rawQuery(query,null);
 
