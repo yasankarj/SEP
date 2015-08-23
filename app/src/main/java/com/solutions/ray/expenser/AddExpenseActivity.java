@@ -85,17 +85,32 @@ public class AddExpenseActivity extends ActionBarActivity {
 
     }
     public void setDate(View view){
-        dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+//        dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+//
+//            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//                Calendar newDate = Calendar.getInstance();
+//                newDate.set(year, monthOfYear, dayOfMonth);
+//                curDateTxt.setText(df.format(newDate.getTime()));
+//            }
+//
+//        },myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
 
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                Calendar newDate = Calendar.getInstance();
-                newDate.set(year, monthOfYear, dayOfMonth);
-                curDateTxt.setText(df.format(newDate.getTime()));
-            }
-
-        },myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+        Intent intent = new Intent(this, DatePick.class);
+        startActivityForResult(intent, 1);
     }
 
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                curDateTxt.setText(data.getStringExtra("result"));
+            }
+            if (resultCode == RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -121,18 +136,22 @@ public class AddExpenseActivity extends ActionBarActivity {
     public void addExpense(View view){
         /*Button Action performance*/
         /*Controller takes the action to his hand*/
+
+        String msg = transHandler.addNewExpense(this, Double.parseDouble(amountTxt.getText().toString()), descTxt.getText().toString(), catTxt.getText().toString(), subCatTxt.getText().toString(), payeeTxt.getText().toString(), payeeTypeTxt.getText().toString(),df.format(dt));
         long val = 0;
-       try{
-           val = transHandler.addNewExpense(this, Double.parseDouble(amountTxt.getText().toString()), descTxt.getText().toString(), catTxt.getText().toString(), subCatTxt.getText().toString(), payeeTxt.getText().toString(), payeeTypeTxt.getText().toString(),df.format(dt));
-           Toast.makeText(getApplicationContext(), "Succesfully Added !",Toast.LENGTH_SHORT).show();
-       }
 
-       catch (Exception ex){
-           Toast.makeText(getApplicationContext(), "Error Occured !!!",
-                   Toast.LENGTH_SHORT).show();
-       }
+        if(msg.equals("Successfully Added")){
+            Toast.makeText(getApplicationContext(), msg,
+                    Toast.LENGTH_LONG).show();
+            finish();
 
-        finish();
+        }
+
+        else{
+            Toast.makeText(getApplicationContext(), msg,
+                    Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void addPhoto(View view){

@@ -14,7 +14,6 @@ import java.util.Date;
 
 import Controller.Tracker.TransactionHandler;
 
-
 public class MainActivity extends ActionBarActivity {
     TransactionHandler transHandler;
     TextView testTxt;

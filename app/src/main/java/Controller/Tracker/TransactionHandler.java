@@ -4,6 +4,7 @@ package Controller.Tracker;
  */
 
 import android.content.Context;
+import android.database.sqlite.SQLiteException;
 
 import DA.Tracker.TranasctionDA;
 import Model.Tracker.Expense;
@@ -23,12 +24,31 @@ public class TransactionHandler {
         return transDA.sumIncome(context);
     }
 
-    public long addNewExpense(Context contxt, Double amount, String desc, String type, String subType, String payee, String payType, String dateStr){
+    public String addNewExpense(Context contxt, Double amount, String desc, String type, String subType, String payee, String payType, String dateStr){
         //(double amount, String type,String subType,String desc, String payee, String payType)
-        Expense exp = new Expense(amount,type,subType,desc,payee,payType,dateStr);    //Expense object is created with the passed data
-        TranasctionDA transDA = new TranasctionDA();
-        long val = transDA.addExpense(exp,contxt);                                //Model object is passed to the data access layer
-        return val;
+        String msg = "";
+        if(amount < 0){
+          msg = "Amount should not be negative";
+        }
+
+        else if(type.equals("")){
+            msg = "Type cannot be empty";
+        }
+
+        else{
+            Expense exp = new Expense(amount,type,subType,desc,payee,payType,dateStr);    //Expense object is created with the passed data
+            TranasctionDA transDA = new TranasctionDA();
+            try{
+                transDA.addExpense(exp,contxt);                                //Model object is passed to the data access layer
+                msg = "Successfully Added";
+            }
+
+            catch(SQLiteException ex) {
+                msg = "Unable to enter data";
+            }
+        }
+
+        return msg;
     }
 
     public void addNewIncome(Context contxt, Double amount, String desc, String cat, String inst){

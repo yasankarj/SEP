@@ -52,9 +52,9 @@ public class DBHandler extends SQLiteOpenHelper{
         /*create expense table*/
         String queryExp = "CREATE TABLE " + TABLE_EXPENSE + "(" +
                 EXPN_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                EXPN_COLUMN_AMOUNT + " REAL, " +
+                EXPN_COLUMN_AMOUNT + " REAL NOT NULL, " +
                 EXPN_DATE_TIME + " TEXT, " +
-                EXPN_COLUMN_CAT + " TEXT, " +
+                EXPN_COLUMN_CAT + " TEXT NOT NULL, " +
                 EXPN_COLUMN_SUB_CAT + " TEXT, " +
                 EXPN_PAYEE + " TEXT, " +
                 EXPN_PAY_TYPE + " TEXT, " +
