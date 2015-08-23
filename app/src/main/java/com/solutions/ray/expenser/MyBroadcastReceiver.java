@@ -39,7 +39,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
         Date date = calendar.getTime();
         //Use this if you want to execute it once
-        timer.schedule(new TimeBasedActivity(context), date);
+        timer.schedule(new TimeBasedActivity(), date);
 
         //Use this if you want to execute it repeatedly
         //int period = 10000;//10secs
