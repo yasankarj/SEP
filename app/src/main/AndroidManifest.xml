@@ -38,10 +38,6 @@
             android:label="@string/title_activity_test" >
         </activity>
         <activity
-            android:name=".DailyExpenses"
-            android:label="@string/title_activity_daily_expenses" >
-        </activity>
-        <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings" >
         </activity>
@@ -71,6 +67,14 @@
         <activity
             android:name=".DatePick"
             android:label="@string/title_activity_date_pick" >
+        </activity>
+        <activity
+            android:name=".WeeklyExpenses"
+            android:label="@string/title_activity_weekly_expenses" >
+        </activity>
+        <activity
+            android:name=".MonthlyExpenses"
+            android:label="@string/title_activity_monthly_expenses" >
         </activity>
     </application>
 

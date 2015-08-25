@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import DA.Tracker.TranasctionDA;
 
@@ -36,7 +38,11 @@ public class Test extends ActionBarActivity {
         testTxt = (TextView)findViewById(R.id.testTxt);
         testTxtInc = (TextView)findViewById(R.id.incTxt);
         transDA = new TranasctionDA();
-        testTxt.setText(transDA.allExpenses(this));
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date dt = new Date();
+        String date = df.format(dt);
+
+        testTxt.setText(transDA.allExpenses(this,date));
         testTxtInc.setText(transDA.allIncome(this));
 
     }

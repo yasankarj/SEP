@@ -41,7 +41,7 @@ public class MainActivity extends ActionBarActivity {
         df= new SimpleDateFormat("yyyy-MM");
         monthlyTotExpenseTxt.setText("Monthly Expense :	"+transHandler.getDailyExpTot(this,df.format(dt)));
 
-        weeklyTotExpenseTxt.setText("Weekly Expense : "+transHandler.getDailyExpTot(this,df.format(dt)+"%"+weekF.format(dt)));
+        //weeklyTotExpenseTxt.setText("Weekly Expense : "+transHandler.getDailyExpTot(this,df.format(dt)+"%"+weekF.format(dt)));
 
         df= new SimpleDateFormat("yyyy");
         annualExpTxt.setText("Year To Date : "+transHandler.getDailyExpTot(this,df.format(dt)));

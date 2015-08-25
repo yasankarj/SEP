@@ -49,7 +49,7 @@ public class AddExpenseActivity extends ActionBarActivity {
     DateFormat df;
     Date dt;
     Calendar myCalendar;
-    DatePickerDialog dpd;
+    DatePicker dpd;
     private static final int SELECT_PHOTO = 100;
 
     final String dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/expenser/";
@@ -73,9 +73,11 @@ public class AddExpenseActivity extends ActionBarActivity {
         subCatTxt = (EditText)findViewById(R.id.subCatTxt);
         testTxt = (TextView)findViewById(R.id.testTxt);
         curDateTxt = (TextView)findViewById(R.id.curDateTxt);
-        df = new SimpleDateFormat("yyyy-MM-dd hh:mm WW");
+        df = new SimpleDateFormat("yyyy-MM-dd");
         dt = new Date();
         galleryBtn = (Button)findViewById(R.id.galleryBtn);
+
+
 
         curDateTxt.setText(df.format(dt));
         newdir.mkdirs();
@@ -85,15 +87,6 @@ public class AddExpenseActivity extends ActionBarActivity {
 
     }
     public void setDate(View view){
-//        dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-//
-//            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//                Calendar newDate = Calendar.getInstance();
-//                newDate.set(year, monthOfYear, dayOfMonth);
-//                curDateTxt.setText(df.format(newDate.getTime()));
-//            }
-//
-//        },myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
 
         Intent intent = new Intent(this, DatePick.class);
         startActivityForResult(intent, 1);
@@ -136,8 +129,10 @@ public class AddExpenseActivity extends ActionBarActivity {
     public void addExpense(View view){
         /*Button Action performance*/
         /*Controller takes the action to his hand*/
-
-        String msg = transHandler.addNewExpense(this, Double.parseDouble(amountTxt.getText().toString()), descTxt.getText().toString(), catTxt.getText().toString(), subCatTxt.getText().toString(), payeeTxt.getText().toString(), payeeTypeTxt.getText().toString(),df.format(dt));
+        String dateStr = curDateTxt.getText().toString();
+        df = new SimpleDateFormat("hh:mm W");
+        dateStr = dateStr+" "+df.format(dt);
+        String msg = transHandler.addNewExpense(this, amountTxt.getText().toString(), descTxt.getText().toString(), catTxt.getText().toString(), subCatTxt.getText().toString(), payeeTxt.getText().toString(), payeeTypeTxt.getText().toString(),dateStr);
         long val = 0;
 
         if(msg.equals("Successfully Added")){
@@ -181,3 +176,4 @@ public class AddExpenseActivity extends ActionBarActivity {
 
 
 }
+

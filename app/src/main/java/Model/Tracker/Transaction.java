@@ -13,16 +13,31 @@ public class Transaction {
     private String type;
     private String subType;
     private String imageLoc;
-    private String timeStamp;
+    private String date;
+    private String time;
+    private String week;
 
     private String desc;
 
-    Transaction(double amount, String type,String subType, String desc,String timeStamp){
+    Transaction(int transID, double amount, String type,String subType, String desc,String date, String time, String week){
+        this.transID = transID;
         this.amount = amount;
         this.type = type;
         this.subType = subType;
         this.desc = desc;
-        this.timeStamp = timeStamp;
+        this.date = date;
+        this.week = week;
+        this.time = time;
+    }
+
+    Transaction(double amount, String type,String subType, String desc,String date, String time, String week){
+        this.amount = amount;
+        this.type = type;
+        this.subType = subType;
+        this.desc = desc;
+        this.date = date;
+        this.week = week;
+        this.time = time;
     }
 
     public int getTransID() {
@@ -49,7 +64,15 @@ public class Transaction {
         return desc;
     }
 
-    public String getTimeStamp() {
-        return timeStamp;
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getWeek() {
+        return week;
     }
 }

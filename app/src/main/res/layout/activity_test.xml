@@ -22,12 +22,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Test"
         android:id="@+id/testTxt"
+        android:layout_marginTop="29dp"
         android:layout_below="@+id/titleTxt"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="32dp" />
+        android:layout_toLeftOf="@+id/titleTxt"
+        android:layout_toStartOf="@+id/titleTxt" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,10 +33,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Incomes Added"
         android:id="@+id/ind"
-        android:layout_marginTop="66dp"
         android:layout_below="@+id/testTxt"
-        android:layout_alignLeft="@+id/titleTxt"
-        android:layout_alignStart="@+id/titleTxt" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="101dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,38 +44,9 @@
         android:text="test"
         android:id="@+id/incTxt"
         android:layout_below="@+id/ind"
-        android:layout_toLeftOf="@+id/ind"
-        android:layout_toStartOf="@+id/ind"
-        android:layout_marginTop="26dp" />
+        android:layout_alignRight="@+id/testTxt"
+        android:layout_alignEnd="@+id/testTxt" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:id="@+id/uploadPhtBtn"
-        android:layout_above="@+id/dpResult"
-        android:layout_centerHorizontal="true" />
-
-
-    <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker"
-        android:timePickerMode="spinner"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp" />
-
-    <DatePicker
-        android:id="@+id/dpResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false"
-        android:layout_above="@+id/timePicker"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp" />
 
 </RelativeLayout>
 </ScrollView>

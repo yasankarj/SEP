@@ -6,14 +6,34 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
+
+import java.util.Calendar;
 
 
 public class DatePick extends ActionBarActivity {
 
+    String pickedDate;
+    DatePicker datePicker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_pick);
+
+        datePicker = (DatePicker)findViewById(R.id.dpResult);
+
+        Calendar calendar = Calendar.getInstance();
+        MyOnDateChangeListener onDateChangeListener = new MyOnDateChangeListener();
+        datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), onDateChangeListener);
+    }
+
+    public class MyOnDateChangeListener implements DatePicker.OnDateChangedListener {
+        @Override
+        public void onDateChanged(DatePicker view, int year, int month, int day) {
+            int mon=month+1;
+            pickedDate = year+"-"+mon+"-"+day;
+        }
     }
 
 
@@ -42,7 +62,7 @@ public class DatePick extends ActionBarActivity {
     public void onD(View view){
 
         Intent returnIntent = getIntent();
-        returnIntent.putExtra("result","Success");
+        returnIntent.putExtra("result",pickedDate);
         setResult(RESULT_OK,returnIntent);
         finish();
     }

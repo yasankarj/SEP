@@ -18,7 +18,9 @@ public class DBHandler extends SQLiteOpenHelper{
     private static final String EXPN_COLUMN_CAT = "category";
     private static final String EXPN_COLUMN_SUB_CAT = "subCategory";
     private static final String EXPN_COLUMN_DESC = "desc";
-    private static final String EXPN_DATE_TIME = "date_time";
+    private static final String EXPN_DATE = "date";
+    private static final String EXPN_TIME = "time";
+    private static final String EXPN_WEEK = "week";
     private static final String EXPN_PAYEE = "payee";
     private static final String EXPN_PAY_TYPE = "paytype";
     private static final String EXPN_IMAGE = "image";
@@ -53,7 +55,9 @@ public class DBHandler extends SQLiteOpenHelper{
         String queryExp = "CREATE TABLE " + TABLE_EXPENSE + "(" +
                 EXPN_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 EXPN_COLUMN_AMOUNT + " REAL NOT NULL, " +
-                EXPN_DATE_TIME + " TEXT, " +
+                EXPN_DATE + " TEXT, " +
+                EXPN_TIME + " TEXT, " +
+                EXPN_WEEK + " TEXT, " +
                 EXPN_COLUMN_CAT + " TEXT NOT NULL, " +
                 EXPN_COLUMN_SUB_CAT + " TEXT, " +
                 EXPN_PAYEE + " TEXT, " +

@@ -4,41 +4,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 
-public class DailyExpenses extends ActionBarActivity {
+public class WeeklyExpenses extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_daily_expenses);
-
-        LinearLayout linearLayout = (LinearLayout)findViewById(R.id.linearLayout);
-        TextView tvx = (TextView)findViewById(R.id.textView3);
-        Bundle extras = getIntent().getExtras();
-        if(extras !=null) {
-            String value = extras.getString("range");
-            tvx.setText(value);
-        }
-
-        for (int i = 0; i < 5; i++)
-        {
-            TextView tv = new TextView(this);
-            tv.setClickable(true);
-            tv.setId(i + 5);
-            tv.setText("Dynamic TextView" + i+"\n");
-            linearLayout.addView(tv);
-        }
+        setContentView(R.layout.activity_weekly_expenses);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_daily_expenses, menu);
+        getMenuInflater().inflate(R.menu.menu_weekly_expenses, menu);
         return true;
     }
 
