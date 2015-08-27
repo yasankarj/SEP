@@ -42,7 +42,7 @@ public class Test extends ActionBarActivity {
         Date dt = new Date();
         String date = df.format(dt);
 
-        testTxt.setText(transDA.allExpenses(this,date));
+        testTxt.setText(transDA.allExpenses(this));
         testTxtInc.setText(transDA.allIncome(this));
 
     }

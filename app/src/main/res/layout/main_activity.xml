@@ -15,14 +15,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Today Expenses :"
         android:id="@+id/dailyExpTxt"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="35dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="43dp"
         android:layout_marginStart="43dp"
-        android:onClick="showDailyExp"
-        android:clickable="true" />
+        android:clickable="false" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,6 +57,7 @@
         android:onClick="addExpense"
         android:background="@drawable/btn"
         android:layout_below="@+id/annualExpTxt"
+        android:textColor="#ffffff"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="32dp" />
@@ -69,9 +69,9 @@
         android:id="@+id/button3"
         android:text="Future"
         android:onClick="runTest"
-        android:layout_below="@+id/monthIncTxt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+        android:layout_below="@+id/addIncBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -112,11 +112,13 @@
         android:layout_height="wrap_content"
         android:text="+ Income"
         android:id="@+id/addIncBtn"
-        android:layout_alignTop="@+id/addExpBtn"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:onClick="addIncome"
-        android:background="@drawable/btn"/>
+        android:background="@drawable/btn"
+        android:layout_below="@+id/monthIncTxt"
+        android:layout_alignParentLeft="true"
+        android:textColor="#ffffff"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="36dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -124,8 +126,9 @@
         android:text="Side Bar"
         android:id="@+id/sideBarBtn"
         android:onClick="showSideBar"
-        android:layout_below="@+id/button3"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/button3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -137,6 +140,31 @@
         android:layout_alignRight="@+id/monthExpTxt"
         android:layout_alignEnd="@+id/monthExpTxt"
         android:layout_marginTop="29dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Expenses"
+        android:id="@+id/viewExpBtn"
+        android:textColor="#ffffff"
+        android:background="@drawable/btn"
+        android:layout_alignTop="@+id/addExpBtn"
+        android:onClick="showDailyExp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Incomes"
+        android:id="@+id/viewIncBtn"
+        android:layout_alignBottom="@+id/addIncBtn"
+        android:textColor="#ffffff"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
 </ScrollView>

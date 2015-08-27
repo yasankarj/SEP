@@ -40,5 +40,7 @@
     <string name="title_activity_date_pick">DatePick</string>
     <string name="title_activity_weekly_expenses">WeeklyExpenses</string>
     <string name="title_activity_monthly_expenses">MonthlyExpenses</string>
+    <string name="title_activity_test2">Test2</string>
+    <string name="title_activity_update_expense">Update Expenses</string>
 
 </resources>

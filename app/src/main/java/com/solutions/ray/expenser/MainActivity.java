@@ -17,34 +17,43 @@ import Controller.Tracker.TransactionHandler;
 public class MainActivity extends ActionBarActivity {
     TransactionHandler transHandler;
     TextView testTxt;
+    TextView dailyTotExpenseTxt;
+    TextView dailyTotIncomeTxt;
+
+    TextView weeklyTotExpenseTxt;
+    TextView monthlyTotExpenseTxt;
+    TextView annualExpTxt;
+
+    SimpleDateFormat df;
+    SimpleDateFormat weekF ;
+    Date dt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
-        TextView dailyTotExpenseTxt = (TextView)findViewById(R.id.dailyExpTxt);
-        TextView dailyTotIncomeTxt = (TextView)findViewById(R.id.dailyIncTxt);
+        dailyTotExpenseTxt = (TextView)findViewById(R.id.dailyExpTxt);
+        dailyTotIncomeTxt = (TextView)findViewById(R.id.dailyIncTxt);
 
-        TextView weeklyTotExpenseTxt = (TextView)findViewById(R.id.weekExpTxt);
-        TextView monthlyTotExpenseTxt = (TextView) findViewById(R.id.monthExpTxt);
-        TextView annualExpTxt = (TextView)findViewById(R.id.annualExpTxt);
+        weeklyTotExpenseTxt = (TextView)findViewById(R.id.weekExpTxt);
+        monthlyTotExpenseTxt = (TextView) findViewById(R.id.monthExpTxt);
+        annualExpTxt = (TextView)findViewById(R.id.annualExpTxt);
         transHandler = new TransactionHandler();
 
-        SimpleDateFormat df;
-        SimpleDateFormat weekF = new SimpleDateFormat("WW");
-        Date dt = new Date();
+
+        weekF = new SimpleDateFormat("W");
+        dt = new Date();
         df= new SimpleDateFormat("yyyy-MM-dd"); //Date is stored as a text in format yyyy-MM-dd hh:mm WW
-        dailyTotExpenseTxt.setText("Today Expense : "+transHandler.getDailyExpTot(this,df.format(dt)));
+        dailyTotExpenseTxt.setText("Today Expense : "+transHandler.getDailyExpTot(this,df.format(dt),"daily"));
         dailyTotIncomeTxt.setText("Today Income : "+transHandler.getDailyIncTot(this));
 
         df= new SimpleDateFormat("yyyy-MM");
-        monthlyTotExpenseTxt.setText("Monthly Expense :	"+transHandler.getDailyExpTot(this,df.format(dt)));
+        monthlyTotExpenseTxt.setText("Monthly Expense :	"+transHandler.getDailyExpTot(this,df.format(dt),"monthly"));
 
-        //weeklyTotExpenseTxt.setText("Weekly Expense : "+transHandler.getDailyExpTot(this,df.format(dt)+"%"+weekF.format(dt)));
-
+        weeklyTotExpenseTxt.setText("Weekly Expense : " + transHandler.getDailyExpTot(this, weekF.format(dt), "week"));
         df= new SimpleDateFormat("yyyy");
-        annualExpTxt.setText("Year To Date : "+transHandler.getDailyExpTot(this,df.format(dt)));
+        annualExpTxt.setText("Year To Date : "+transHandler.getDailyExpTot(this,df.format(dt),"annually"));
 
     }
 
@@ -82,13 +91,12 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void runTest(View view){
-        Intent intent = new Intent(this, Test.class);
+        Intent intent = new Intent(this, Test2.class);
         startActivity(intent);
     }
 
     public void showDailyExp(View view){
         Intent intent = new Intent(this, DailyExpenses.class);
-        intent.putExtra("range","month");
         startActivity(intent);
     }
 

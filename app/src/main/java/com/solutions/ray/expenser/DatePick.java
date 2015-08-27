@@ -9,19 +9,25 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class DatePick extends ActionBarActivity {
 
-    String pickedDate;
+    String pickedDate = "";
     DatePicker datePicker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_pick);
 
         datePicker = (DatePicker)findViewById(R.id.dpResult);
+        SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
+        Date dt = new Date();
+        pickedDate = df.format(dt);
 
         Calendar calendar = Calendar.getInstance();
         MyOnDateChangeListener onDateChangeListener = new MyOnDateChangeListener();
@@ -32,7 +38,11 @@ public class DatePick extends ActionBarActivity {
         @Override
         public void onDateChanged(DatePicker view, int year, int month, int day) {
             int mon=month+1;
-            pickedDate = year+"-"+mon+"-"+day;
+            if(mon<10)
+            pickedDate = year+"-0"+mon+"-"+day;
+
+            else
+                pickedDate = year+"-"+mon+"-"+day;
         }
     }
 

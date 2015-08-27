@@ -4,11 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import Utils.DBHandler;
 import Model.Tracker.Expense;
@@ -51,8 +54,8 @@ public class TranasctionDA {
         contentValues.put(EXPN_PAYEE,expn.getPayee());
         contentValues.put(EXPN_PAY_TYPE,expn.getPayType());
         contentValues.put(EXPN_DATE,expn.getDate());
-        contentValues.put(EXPN_DATE,expn.getTime());
-        contentValues.put(EXPN_DATE,expn.getWeek());
+        contentValues.put(EXPN_TIME,expn.getTime());
+        contentValues.put(EXPN_WEEK,expn.getWeek());
         long val = db.insert(TABLE_EXPENSE,null,contentValues);
         db.close();
 
@@ -66,7 +69,7 @@ public class TranasctionDA {
         //concatanated expenses
         String dbStr = "";
         SQLiteDatabase db = dbh.getDataBase();
-        String query = "SELECT amount,category,date FROM "+ TABLE_EXPENSE+";";
+        String query = "SELECT amount,category,date FROM"+ TABLE_EXPENSE+";";
 
         Cursor cur = db.rawQuery(query,null);
 
@@ -74,7 +77,7 @@ public class TranasctionDA {
         /*retrieve the data set using a Cursor*/
         if (cur.moveToFirst()) {
             do {
-                dbStr += cur.getString(cur.getColumnIndex("amount")) +" "+ cur.getString(cur.getColumnIndex("category"))+" "+cur.getString(cur.getColumnIndex("date"));
+                dbStr += cur.getString(cur.getColumnIndex(EXPN_COLUMN_AMOUNT)) +" "+ cur.getString(cur.getColumnIndex("category"))+" "+cur.getString(cur.getColumnIndex("date"));
                 dbStr += "\n";
             } while (cur.moveToNext());
         }
@@ -84,30 +87,49 @@ public class TranasctionDA {
         return dbStr;
     }
 
-    public ArrayList<String> getExpensesByDate(Context context, String date){
+    public Map<String,String> getExpense(Context contxt, int expID){
+        DBHandler dbh = DBHandler.getDBHandler(contxt,null,null,1);
+        // return dbh.getAllExpenses();
+        //concatanated expenses
+        HashMap<String,String> elementMap= new HashMap<String,String>();
+        String dbStr = "";
+        SQLiteDatabase db = dbh.getDataBase();
+        String query = "SELECT * FROM "+ TABLE_EXPENSE+" WHERE expID = "+expID+";";
+
+        Cursor cur = db.rawQuery(query,null);
+
+        elementMap.put(EXPN_COLUMN_ID,cur.getString(cur.getColumnIndex(EXPN_COLUMN_ID)));
+        elementMap.put(EXPN_COLUMN_AMOUNT,cur.getString(cur.getColumnIndex(EXPN_COLUMN_AMOUNT)));
+        elementMap.put(EXPN_PAY_TYPE,cur.getString(cur.getColumnIndex(EXPN_PAY_TYPE)));
+        elementMap.put(EXPN_PAYEE,cur.getString(cur.getColumnIndex(EXPN_PAYEE)));
+        elementMap.put(EXPN_COLUMN_CAT,cur.getString(cur.getColumnIndex(EXPN_COLUMN_CAT)));
+        elementMap.put(EXPN_COLUMN_SUB_CAT,cur.getString(cur.getColumnIndex(EXPN_COLUMN_SUB_CAT)));
+        elementMap.put(EXPN_COLUMN_DESC,cur.getString(cur.getColumnIndex(EXPN_COLUMN_DESC)));
+        elementMap.put(EXPN_DATE,cur.getString(cur.getColumnIndex(EXPN_PAY_TYPE)));
+        elementMap.put(EXPN_TIME,cur.getString(cur.getColumnIndex(EXPN_PAY_TYPE)));
+        elementMap.put(EXPN_WEEK,cur.getString(cur.getColumnIndex(EXPN_PAY_TYPE)));
+
+        return elementMap;
+
+    }
+    public ArrayList <String> getExpensesByDate(Context context, String date){
         ArrayList <String> expenseList = new ArrayList<>();
         DBHandler dbh = DBHandler.getDBHandler(context,null,null,1);
         String dbStr = "";
         SQLiteDatabase db = dbh.getDataBase();
-        String query = "SELECT * FROM "+ TABLE_EXPENSE+";";  //WHERE "+EXPN_DATE+" = '2015-08-25';";
+        int i = 0;
+
+        String query = "SELECT expID,amount,category,subCategory,paytype FROM "+ TABLE_EXPENSE+" WHERE "+EXPN_DATE+" = '"+date+"';";
 
         Cursor cur = db.rawQuery(query,null);
+
+
+        /*retrieve the data set using a Cursor*/
         if (cur.moveToFirst()) {
             do {
-                //Transaction(int transID, double amount, String type,String subType, String desc,String date, String time, String week)
-              /* int transID = cur.getColumnIndex(EXPN_COLUMN_ID);
-                double amount = cur.getColumnIndex(EXPN_COLUMN_AMOUNT);
-                String type = ""+cur.getColumnIndex(EXPN_COLUMN_CAT);
-                String subType = ""+cur.getColumnIndex(EXPN_COLUMN_SUB_CAT);
-                String desc = ""+cur.getColumnIndex(EXPN_COLUMN_DESC);
-                String dateStr = ""+cur.getColumnIndex(EXPN_DATE);
-                String timeStr = ""+cur.getColumnIndex(EXPN_TIME);
-                String weekStr = ""+cur.getColumnIndex(EXPN_WEEK);
-
-                Expense exp = new Expense(transID,amount,type,subType,desc, "", "", dateStr, timeStr,weekStr);
-                expenseList.add(exp);*/
-                String type = ""+cur.getColumnIndex(EXPN_COLUMN_CAT);
-                expenseList.add(type);
+                dbStr =  cur.getString(cur.getColumnIndex("expID")) +" "+cur.getString(cur.getColumnIndex("amount")) +" "+ cur.getString(cur.getColumnIndex("category"))+" |"+cur.getString(cur.getColumnIndex("subCategory"))+" &"+cur.getString(cur.getColumnIndex("paytype"));
+                expenseList.add(dbStr);
+                i++;
             } while (cur.moveToNext());
         }
         db.close();
@@ -116,16 +138,19 @@ public class TranasctionDA {
     }
 
     /*this metod will give the total of all the transactions*/
-    public double sumExpenses(Context contxt,String value){
+    public double sumExpenses(Context contxt,String value,String range){
         DBHandler dbh = DBHandler.getDBHandler(contxt,null,null,1);
         double sum = 0;
         SQLiteDatabase db = dbh.getDataBase();
-
-
-            String query = "SELECT * FROM "+ TABLE_EXPENSE+" WHERE "+EXPN_DATE+" LIKE '"+value+"%';";
+        String query;
+        if(range.equals("week")){
+            query = "SELECT amount FROM "+ TABLE_EXPENSE+" WHERE "+EXPN_WEEK+" = '"+value+"';";
+        }
+        else {
+            query = "SELECT amount FROM " + TABLE_EXPENSE + " WHERE " + EXPN_DATE + " LIKE '" + value + "%';";
+           }
       //  }
        // String query = "SELECT * FROM "+ TABLE_EXPENSE+";";
-
         Cursor cur = db.rawQuery(query,null);
 
 
