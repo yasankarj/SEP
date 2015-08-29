@@ -3,7 +3,6 @@ package com.solutions.ray.expenser;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,19 +10,17 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import Controller.Tracker.TransactionHandler;
-import DA.Tracker.TranasctionDA;
+import DA.Tracker.TransactionDA;
 
 
 public class DailyExpenses extends ActionBarActivity {
     TransactionHandler ths;
-    TranasctionDA td;
     ListAdapter listAdapter;
     SimpleDateFormat df;
     Date dt;
@@ -38,7 +35,6 @@ public class DailyExpenses extends ActionBarActivity {
         setContentView(R.layout.activity_daily_expenses);
 
         ths = new TransactionHandler();
-        td = new TranasctionDA();
 
         dateTxt = (TextView)findViewById(R.id.dateTxt);
         totTxt = (TextView)findViewById(R.id.totTxt);
@@ -47,7 +43,7 @@ public class DailyExpenses extends ActionBarActivity {
         dt = new Date();
         dateTxt.setText(df.format(dt));
         totTxt.setText(""+ths.getDailyExpTot(this,df.format(dt),"daily"));
-        expList = td.getExpensesByDate(this, df.format(dt));
+        expList = ths.getExpensesByDate(this, df.format(dt));
 
         items = expList.toArray(new String[expList.size()]);
 //        totTxt.setText(""+expList);
@@ -111,7 +107,7 @@ public class DailyExpenses extends ActionBarActivity {
                 dateTxt.setText(result);
                 totTxt.setText(""+ths.getDailyExpTot(this,result,"daily"));
 
-                expList = td.getExpensesByDate(this, result);
+                expList = ths.getExpensesByDate(this, result);
 
                 items = expList.toArray(new String[expList.size()]);
 

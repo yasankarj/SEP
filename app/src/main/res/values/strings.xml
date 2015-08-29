@@ -42,5 +42,9 @@
     <string name="title_activity_monthly_expenses">MonthlyExpenses</string>
     <string name="title_activity_test2">Test2</string>
     <string name="title_activity_update_expense">Update Expenses</string>
+    <string name="title_activity_chart_picker">Chart Picker</string>
+    <string name="title_activity_daily_chart">Daily Chart</string>
+    <string name="title_activity_monthly_chart">MonthlyChart</string>
+    <string name="title_activity_annual_chart">AnnualChart</string>
 
 </resources>

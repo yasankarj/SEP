@@ -1,20 +1,15 @@
 package com.solutions.ray.expenser;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -69,7 +64,7 @@ public class AddExpenseActivity extends ActionBarActivity {
         payeeTxt = (EditText)findViewById(R.id.instTxt);
         payeeTypeTxt = (EditText)findViewById(R.id.payeeTypeTxt);
         descTxt = (EditText)findViewById(R.id.descTxt);
-        addExpBtn = (Button)findViewById(R.id.addExpBtn);
+        addExpBtn = (Button)findViewById(R.id.updateBtn);
         captureBtn = (Button)findViewById(R.id.captureBtn);
         catTxt = (EditText)findViewById(R.id.categoryTxt);
         subCatTxt = (EditText)findViewById(R.id.subCatTxt);
@@ -132,10 +127,10 @@ public class AddExpenseActivity extends ActionBarActivity {
         /*Button Action performance*/
         /*Controller takes the action to his hand*/
         String dateStr = curDateTxt.getText().toString();
+
         df = new SimpleDateFormat("hh:mm W");
         dateStr = dateStr+" "+df.format(dt);
         String msg = transHandler.addNewExpense(this, amountTxt.getText().toString(), descTxt.getText().toString(), catTxt.getText().toString(), subCatTxt.getText().toString(), payeeTxt.getText().toString(), payeeTypeTxt.getText().toString(),dateStr);
-        long val = 0;
         if(msg.equals("Successfully Added")){
             Toast.makeText(getApplicationContext(), msg,
                     Toast.LENGTH_LONG).show();

@@ -36,8 +36,8 @@ public class MainActivity extends ActionBarActivity {
         dailyTotExpenseTxt = (TextView)findViewById(R.id.dailyExpTxt);
         dailyTotIncomeTxt = (TextView)findViewById(R.id.dailyIncTxt);
 
-        weeklyTotExpenseTxt = (TextView)findViewById(R.id.weekExpTxt);
-        monthlyTotExpenseTxt = (TextView) findViewById(R.id.monthExpTxt);
+        weeklyTotExpenseTxt = (TextView)findViewById(R.id.weeklyExpTxt);
+        monthlyTotExpenseTxt = (TextView) findViewById(R.id.monthlyExpTxt);
         annualExpTxt = (TextView)findViewById(R.id.annualExpTxt);
         transHandler = new TransactionHandler();
 
@@ -45,15 +45,15 @@ public class MainActivity extends ActionBarActivity {
         weekF = new SimpleDateFormat("W");
         dt = new Date();
         df= new SimpleDateFormat("yyyy-MM-dd"); //Date is stored as a text in format yyyy-MM-dd hh:mm WW
-        dailyTotExpenseTxt.setText("Today Expense : "+transHandler.getDailyExpTot(this,df.format(dt),"daily"));
-        dailyTotIncomeTxt.setText("Today Income : "+transHandler.getDailyIncTot(this));
+        dailyTotExpenseTxt.setText(""+transHandler.getDailyExpTot(this,df.format(dt),"daily"));
+        dailyTotIncomeTxt.setText(""+transHandler.getDailyIncTot(this));
 
         df= new SimpleDateFormat("yyyy-MM");
-        monthlyTotExpenseTxt.setText("Monthly Expense :	"+transHandler.getDailyExpTot(this,df.format(dt),"monthly"));
+        monthlyTotExpenseTxt.setText(""+transHandler.getDailyExpTot(this,df.format(dt),"monthly"));
 
-        weeklyTotExpenseTxt.setText("Weekly Expense : " + transHandler.getDailyExpTot(this, weekF.format(dt), "week"));
+        weeklyTotExpenseTxt.setText("" + transHandler.getDailyExpTot(this, weekF.format(dt), "week"));
         df= new SimpleDateFormat("yyyy");
-        annualExpTxt.setText("Year To Date : "+transHandler.getDailyExpTot(this,df.format(dt),"annually"));
+        annualExpTxt.setText(""+transHandler.getDailyExpTot(this,df.format(dt),"annually"));
 
     }
 
@@ -101,7 +101,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void showSideBar(View view){
-        Intent intent = new Intent(this,SideBar.class);
+        Intent intent = new Intent(this,DailyChart.class);
         startActivity(intent);
     }
 }

@@ -14,61 +14,95 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Today Expenses :"
-        android:id="@+id/dailyExpTxt"
+        android:id="@+id/Txt1"
         android:layout_marginTop="35dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="43dp"
-        android:layout_marginStart="43dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="30dp"
         android:clickable="false" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/dailyExpTxt"
+        android:layout_marginTop="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginEnd="30dp"
+         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Weekly Expenses :"
-        android:id="@+id/weekExpTxt"
-        android:layout_marginTop="28dp"
+        android:id="@+id/Txt2"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/Txt1"
+        android:layout_alignLeft="@+id/Txt1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/weeklyExpTxt"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/dailyExpTxt"
         android:layout_alignRight="@+id/dailyExpTxt"
-        android:layout_alignEnd="@+id/dailyExpTxt"
-        android:clickable="true" />
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Monthly Expenses :"
-        android:id="@+id/monthExpTxt"
-        android:layout_marginTop="27dp"
-        android:layout_below="@+id/weekExpTxt"
-        android:layout_alignRight="@+id/weekExpTxt"
-        android:layout_alignEnd="@+id/weekExpTxt"
-        android:clickable="true"
-        android:focusable="false" />
+        android:id="@+id/Txt3"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/Txt2"
+        android:layout_alignLeft="@+id/Txt2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/monthlyExpTxt"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/weeklyExpTxt"
+        android:layout_alignRight="@+id/weeklyExpTxt"
+        />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+ Expense"
-        android:id="@+id/addExpBtn"
+        android:id="@+id/updateBtn"
         android:onClick="addExpense"
         android:background="@drawable/btn"
-        android:layout_below="@+id/annualExpTxt"
+        android:layout_below="@+id/Txt4"
         android:textColor="#ffffff"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="35dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button3"
-        android:text="Future"
+        android:text="Testing"
         android:onClick="runTest"
+        android:layout_marginTop="35dp"
         android:layout_below="@+id/addIncBtn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -77,35 +111,126 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Today Income :"
+        android:text="Text"
         android:id="@+id/dailyIncTxt"
-        android:layout_marginTop="31dp"
-        android:layout_below="@+id/addExpBtn"
-        android:layout_alignRight="@+id/weekIncTxt"
-        android:layout_alignEnd="@+id/weekIncTxt" />
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/updateBtn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginEnd="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Daily Income :"
+        android:id="@+id/Txt5"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/updateBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="30dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Weekly Income :"
-        android:id="@+id/weekIncTxt"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/dailyIncTxt"
-        android:layout_alignRight="@+id/weekExpTxt"
-        android:layout_alignEnd="@+id/weekExpTxt" />
+        android:id="@+id/Txt6"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/Txt5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="30dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Monthly Income :"
-        android:id="@+id/monthIncTxt"
-        android:layout_marginTop="21dp"
-        android:layout_below="@+id/weekIncTxt"
-        android:layout_alignRight="@+id/monthExpTxt"
-        android:layout_alignEnd="@+id/monthExpTxt" />
+        android:id="@+id/Txt7"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/Txt6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="30dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Year to date :"
+        android:id="@+id/Txt8"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/Txt7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Text"
+        android:id="@+id/weekIncTxt"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/dailyIncTxt"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginEnd="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Text"
+        android:id="@+id/monthIncTxt"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/weekIncTxt"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginEnd="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Text"
+        android:id="@+id/annualIncTxt"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/monthIncTxt"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginEnd="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Year To Date :"
+        android:id="@+id/Txt4"
+        android:layout_below="@+id/Txt3"
+        android:layout_alignLeft="@+id/Txt3"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/annualExpTxt"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/monthlyExpTxt"
+        android:layout_alignRight="@+id/monthlyExpTxt"
+        />
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -113,10 +238,11 @@
         android:text="+ Income"
         android:id="@+id/addIncBtn"
         android:onClick="addIncome"
-        android:background="@drawable/btn"
-        android:layout_below="@+id/monthIncTxt"
+        android:background="@drawable/btn_green"
+        android:layout_below="@+id/Txt8"
         android:layout_alignParentLeft="true"
         android:textColor="#ffffff"
+
         android:layout_alignParentStart="true"
         android:layout_marginTop="36dp" />
 
@@ -130,16 +256,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Year To Date :"
-        android:id="@+id/annualExpTxt"
-        android:layout_below="@+id/monthExpTxt"
-        android:layout_alignRight="@+id/monthExpTxt"
-        android:layout_alignEnd="@+id/monthExpTxt"
-        android:layout_marginTop="29dp" />
+
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -149,7 +266,7 @@
         android:id="@+id/viewExpBtn"
         android:textColor="#ffffff"
         android:background="@drawable/btn"
-        android:layout_alignTop="@+id/addExpBtn"
+        android:layout_alignTop="@+id/updateBtn"
         android:onClick="showDailyExp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -163,8 +280,10 @@
         android:layout_alignBottom="@+id/addIncBtn"
         android:textColor="#ffffff"
         android:layout_alignParentRight="true"
-        android:background="@drawable/btn"
+        android:background="@drawable/btn_green"
         android:layout_alignParentEnd="true" />
+
+
 
 </RelativeLayout>
 </ScrollView>

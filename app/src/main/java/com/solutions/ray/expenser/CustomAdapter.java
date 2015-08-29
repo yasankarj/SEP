@@ -50,32 +50,11 @@ public class CustomAdapter extends ArrayAdapter<String>{
 
         String str = getItem(position);
         String [] subStr = str.split(" ");
-        Log.d("@Cust",""+subStr.length+" |:"+str);
-        if(subStr.length == 3){
-            typeTxt.setText(subStr[2]);
-            amountTxt.setText(subStr[1]);
-        }
 
-        else if(subStr.length == 4){
-            typeTxt.setText(subStr[2]);
-            amountTxt.setText(subStr[1]);
-            if(subStr[2].startsWith("|")){
-                subTypeTxt.setText(subStr[3].substring(1));
-                payTypeTxt.setText("");
-            }
-            else {
-                payTypeTxt.setText(subStr[3].substring(1));
-                subTypeTxt.setText("");
-            }
-        }
-
-        else if(subStr.length == 5){
-            typeTxt.setText(subStr[2]);
-            amountTxt.setText(subStr[1]);
-            subTypeTxt.setText(subStr[3].substring(1));
-            payTypeTxt.setText(subStr[4].substring(1));
-        }
-
+        amountTxt.setText(subStr[1]);
+        typeTxt.setText(subStr[2]);
+        subTypeTxt.setText(subStr[3].substring(1));
+        payTypeTxt.setText(subStr[4].substring(1));
         return customView;
     }
 }

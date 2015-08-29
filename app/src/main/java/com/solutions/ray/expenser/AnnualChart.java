@@ -1,26 +1,24 @@
 package com.solutions.ray.expenser;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 
-public class SideBar extends ActionBarActivity {
+public class AnnualChart extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_side_bar);
+        setContentView(R.layout.activity_annual_chart);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_side_bar, menu);
+        getMenuInflater().inflate(R.menu.menu_annual_chart, menu);
         return true;
     }
 
@@ -38,10 +36,4 @@ public class SideBar extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void charts(View view){
-        Intent intent = new Intent(this, DailyChart.class);
-        startActivity(intent);
-    }
 }
-

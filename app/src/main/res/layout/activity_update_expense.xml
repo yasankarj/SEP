@@ -74,14 +74,15 @@ android:fillViewport="true">
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update Expense"
-        android:id="@+id/addExpBtn"
-        android:onClick="addExpense"
+        android:text="Update"
+        android:id="@+id/updateBtn"
         android:background="@drawable/btn"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="33dp" />
+        android:layout_marginBottom="33dp"
+        android:textColor="#ffffff"
+        android:onClick="updateExpense" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -229,6 +230,20 @@ android:fillViewport="true">
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/amountTxt"
         android:layout_alignEnd="@+id/amountTxt" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:id="@+id/deleteBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="33dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/btn_red"
+        android:layout_alignParentEnd="true"
+        android:onClick="deleteExpense" />
 
 
 </RelativeLayout>

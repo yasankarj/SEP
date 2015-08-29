@@ -8,19 +8,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 import Controller.Tracker.TransactionHandler;
-import Model.Tracker.Expense;
 
 
 public class UpdateExpense extends ActionBarActivity {
@@ -41,12 +40,14 @@ public class UpdateExpense extends ActionBarActivity {
     Button addExpBtn;
     Button captureBtn;
     TextView curDateTxt;
+    String week;
+    String time;
     Button galleryBtn;
     DateFormat df;
     Date dt;
-    Calendar myCalendar;
-    DatePicker dpd;
     private static final int SELECT_PHOTO = 100;
+    String expID;
+    HashMap <String,String> elementMap;
 
     final String dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/expenser/";
     File newdir = new File(dir);
@@ -60,28 +61,34 @@ public class UpdateExpense extends ActionBarActivity {
         payeeTxt = (EditText) findViewById(R.id.instTxt);
         payeeTypeTxt = (EditText) findViewById(R.id.payeeTypeTxt);
         descTxt = (EditText) findViewById(R.id.descTxt);
-        addExpBtn = (Button) findViewById(R.id.addExpBtn);
+        addExpBtn = (Button) findViewById(R.id.updateBtn);
         captureBtn = (Button) findViewById(R.id.captureBtn);
         catTxt = (EditText) findViewById(R.id.categoryTxt);
         subCatTxt = (EditText) findViewById(R.id.subCatTxt);
         testTxt = (TextView) findViewById(R.id.testTxt);
         curDateTxt = (TextView) findViewById(R.id.curDateTxt);
-        df = new SimpleDateFormat("yyyy-MM-dd");
-        dt = new Date();
         galleryBtn = (Button) findViewById(R.id.galleryBtn);
 
 
-        curDateTxt.setText(df.format(dt));
         newdir.mkdirs();
 
         transactionHandler = new TransactionHandler();
         Bundle extras = getIntent().getExtras();
 
-        String expID = extras.getString("expID");
+        expID = extras.getString("expID");
         if (extras != null) {
-//            Expense expense = transactionHandler.getExpense(this, expID);
-            amountTxt.setText(expID);
-        //    catTxt.setText(expense.getType());
+
+            elementMap = transactionHandler.getExpense(this, expID);
+
+            amountTxt.setText(elementMap.get("amount"));
+            curDateTxt.setText(elementMap.get("date"));
+            catTxt.setText(elementMap.get("category"));
+            subCatTxt.setText(elementMap.get("subCategory"));
+            payeeTxt.setText(elementMap.get("payee"));
+            payeeTypeTxt.setText(elementMap.get("payType"));
+            descTxt.setText(elementMap.get("desc"));
+            week = elementMap.get("week");
+            time = elementMap.get("time");
         }
 
     }
@@ -127,23 +134,40 @@ public class UpdateExpense extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addExpense(View view) {
-        /*Button Action performance*/
-        /*Controller takes the action to his hand*/
+    public void updateExpense(View view) throws ParseException {
+
         String dateStr = curDateTxt.getText().toString();
-        df = new SimpleDateFormat("hh:mm W");
-        dateStr = dateStr + " " + df.format(dt);
-        String msg = transactionHandler.addNewExpense(this, amountTxt.getText().toString(), descTxt.getText().toString(), catTxt.getText().toString(), subCatTxt.getText().toString(), payeeTxt.getText().toString(), payeeTypeTxt.getText().toString(), dateStr);
-        long val = 0;
-        if (msg.equals("Successfully Added")) {
+        Date dt;
+        df = new SimpleDateFormat("yyyy-MM-dd");
+        dt = df.parse(dateStr);
+        df = new SimpleDateFormat("W");
+        week = df.format(dt);
+        String msg = transactionHandler.updateExpense(this,expID, amountTxt.getText().toString(), descTxt.getText().toString(), catTxt.getText().toString(), subCatTxt.getText().toString(), payeeTxt.getText().toString(), payeeTypeTxt.getText().toString(),curDateTxt.getText().toString(),time,week);
+        if(msg.equals("Successfully Updated")){
             Toast.makeText(getApplicationContext(), msg,
                     Toast.LENGTH_LONG).show();
             finish();
 
-        } else {
+        }
+
+        else{
             Toast.makeText(getApplicationContext(), msg,
                     Toast.LENGTH_SHORT).show();
         }
+    }
 
+
+    public void deleteExpense(View view){
+        String msg = transactionHandler.deleteExpense(this,expID);
+        if(msg.equals("Sucessfully Deleted")){
+            Toast.makeText(getApplicationContext(), msg,
+                    Toast.LENGTH_LONG).show();
+            finish();
+        }
+
+        else{
+            Toast.makeText(getApplicationContext(), msg,
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }

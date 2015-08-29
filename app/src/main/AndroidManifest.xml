@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -38,11 +38,6 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".Test"
-            android:label="@string/title_activity_test"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name=".TestAct"
             android:label="@string/title_activity_test"
             android:screenOrientation="portrait" >
@@ -65,15 +60,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver>
-        <receiver android:name=".NewAppWidget" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/new_app_widget_info" />
         </receiver>
 
         <activity
@@ -105,6 +91,23 @@
         <activity
             android:name=".UpdateExpense"
             android:label="@string/title_activity_update_expense" >
+        </activity>
+        <activity
+            android:name=".ChartPicker"
+            android:label="@string/title_activity_chart_picker"
+            android:theme="@style/Base.V7.Theme.AppCompat.Light.Dialog">
+        </activity>
+        <activity
+            android:name=".DailyChart"
+            android:label="@string/title_activity_daily_chart" >
+        </activity>
+        <activity
+            android:name=".MonthlyChart"
+            android:label="@string/title_activity_monthly_chart" >
+        </activity>
+        <activity
+            android:name=".AnnualChart"
+            android:label="@string/title_activity_annual_chart" >
         </activity>
     </application>
 
